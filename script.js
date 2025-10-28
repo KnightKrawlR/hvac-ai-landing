@@ -1,5 +1,5 @@
 // Configuration - UPDATE THIS WITH YOUR GOHIGHLEVEL BOOKING URL
-const BOOKING_URL = 'https://brand.artfulautomation.com/book-a-call'; // Replace with your actual booking URL
+const BOOKING_URL = 'https://brand.artfulautomation.com/consultation-appointment';
 
 // Book a call function
 function bookCall(event) {
