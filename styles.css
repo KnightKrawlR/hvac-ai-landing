@@ -114,6 +114,39 @@ nav a:hover {
     text-align: center;
 }
 
+.hero .container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 60px;
+    align-items: center;
+    text-align: left;
+}
+
+.hero-video {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+    animation: fadeInRight 1s ease-out 0.8s both;
+}
+
+.hero-video video {
+    width: 100%;
+    height: auto;
+    display: block;
+}
+
+@keyframes fadeInRight {
+    from {
+        opacity: 0;
+        transform: translateX(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
 .hero-title {
     font-size: 56px;
     font-weight: 800;
@@ -694,6 +727,16 @@ footer {
 @media (max-width: 768px) {
     nav {
         display: none;
+    }
+
+    .hero .container {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: center;
+    }
+
+    .hero-video {
+        order: -1;
     }
 
     .hero-title {
