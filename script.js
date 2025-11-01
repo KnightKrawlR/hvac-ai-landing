@@ -79,3 +79,47 @@ document.querySelectorAll('.cta-button, .plan-button').forEach(button => {
     });
 });
 
+
+
+
+// Video Modal Functionality
+document.addEventListener('DOMContentLoaded', () => {
+    const heroVideo = document.getElementById('heroVideo');
+    const videoModal = document.getElementById('videoModal');
+    const modalVideo = document.getElementById('modalVideo');
+    const closeModal = document.querySelector('.video-modal-close');
+    
+    // Open modal when hero video is clicked
+    if (heroVideo) {
+        heroVideo.parentElement.addEventListener('click', () => {
+            videoModal.style.display = 'block';
+            modalVideo.currentTime = 0;
+            modalVideo.play();
+        });
+    }
+    
+    // Close modal when X is clicked
+    if (closeModal) {
+        closeModal.addEventListener('click', () => {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+        });
+    }
+    
+    // Close modal when clicking outside video
+    videoModal.addEventListener('click', (e) => {
+        if (e.target === videoModal) {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+        }
+    });
+    
+    // Close modal with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape' && videoModal.style.display === 'block') {
+            videoModal.style.display = 'none';
+            modalVideo.pause();
+        }
+    });
+});
+

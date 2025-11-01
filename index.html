@@ -44,10 +44,11 @@
                 <p class="social-proof">Trusted by 12+ HVAC and Pest Control businesses in Maryland, Virginia, and DC</p>
             </div>
             <div class="hero-video">
-                <video autoplay muted loop playsinline>
+                <video id="heroVideo" autoplay muted loop playsinline>
                     <source src="https://files.manuscdn.com/user_upload_by_module/session_file/108282707/wBfntkzwQUbKtSHZ.mp4" type="video/mp4">
                     Your browser does not support the video tag.
                 </video>
+                <div class="video-click-hint">🔊 Click to play with sound</div>
             </div>
         </div>
     </section>
@@ -379,6 +380,23 @@
 
     <script src="script.js"></script>
     <!-- Chatbot will be inserted here -->
+</body>
+</html>
+
+
+
+    <!-- Video Modal -->
+    <div id="videoModal" class="video-modal">
+        <div class="video-modal-content">
+            <span class="video-modal-close">&times;</span>
+            <video id="modalVideo" controls>
+                <source src="https://files.manuscdn.com/user_upload_by_module/session_file/108282707/wBfntkzwQUbKtSHZ.mp4" type="video/mp4">
+                Your browser does not support the video tag.
+            </video>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
 </body>
 </html>
 
