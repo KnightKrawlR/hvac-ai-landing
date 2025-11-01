@@ -1,11 +1,34 @@
-// Configuration - UPDATE THIS WITH YOUR GOHIGHLEVEL BOOKING URL
-const BOOKING_URL = 'https://brand.artfulautomation.com/consultation-appointment';
+// Configuration - Booking URLs for different plans
+const BOOKING_URLS = {
+    starter: 'https://brand.artfulautomation.com/consultation-appointment',
+    growth: 'https://brand.artfulautomation.com/consultation-appointment-growth-370518',
+    general: 'https://brand.artfulautomation.com/consultation-appointment-general-609889'
+};
 
-// Book a call function
-function bookCall(event) {
+// Book a call function with plan parameter
+function bookCall(event, plan = 'general') {
     event.preventDefault();
-    window.location.href = BOOKING_URL;
+    const url = BOOKING_URLS[plan] || BOOKING_URLS.general;
+    window.location.href = url;
 }
+
+// Add click handlers for pricing buttons
+document.addEventListener('DOMContentLoaded', () => {
+    // Starter plan buttons
+    document.querySelectorAll('[data-plan="starter"]').forEach(button => {
+        button.addEventListener('click', (e) => bookCall(e, 'starter'));
+    });
+    
+    // Growth plan buttons
+    document.querySelectorAll('[data-plan="growth"]').forEach(button => {
+        button.addEventListener('click', (e) => bookCall(e, 'growth'));
+    });
+    
+    // General CTA buttons (hero, etc.)
+    document.querySelectorAll('.cta-button:not([data-plan])').forEach(button => {
+        button.addEventListener('click', (e) => bookCall(e, 'general'));
+    });
+});
 
 // Smooth scroll for navigation links
 document.querySelectorAll('a[href^="#"]').forEach(anchor => {
