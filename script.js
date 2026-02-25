@@ -159,12 +159,24 @@ document.addEventListener('DOMContentLoaded', () => {
             
             try {
                 // Submit to your backend or CRM
-                // For now, redirect to booking page after collecting info
                 console.log('Form submitted:', formData);
                 
-                // Redirect to appropriate booking page based on plan
-                const url = BOOKING_URLS.general;
-                window.location.href = url;
+                // TODO: Add your backend API call here
+                // await fetch('/api/submit-form', {
+                //     method: 'POST',
+                //     headers: { 'Content-Type': 'application/json' },
+                //     body: JSON.stringify(formData)
+                // });
+                
+                // Show thank you popup
+                showThankYouPopup();
+                
+                // Clear form
+                contactForm.reset();
+                
+                // Re-enable submit button
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
                 
             } catch (error) {
                 console.error('Form submission error:', error);
@@ -175,3 +187,103 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+
+// Show thank you popup after form submission
+function showThankYouPopup() {
+    // Create popup overlay
+    const overlay = document.createElement('div');
+    overlay.style.cssText = `
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0, 0, 0, 0.7);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 10000;
+        animation: fadeIn 0.3s ease-out;
+    `;
+    
+    // Create popup box
+    const popup = document.createElement('div');
+    popup.style.cssText = `
+        background: white;
+        padding: 40px;
+        border-radius: 12px;
+        text-align: center;
+        max-width: 500px;
+        width: 90%;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        animation: slideUp 0.3s ease-out;
+    `;
+    
+    popup.innerHTML = `
+        <div style="font-size: 60px; margin-bottom: 20px;">✅</div>
+        <h2 style="color: #1a1a1a; margin-bottom: 15px; font-size: 28px;">Thank You!</h2>
+        <p style="color: #555; font-size: 18px; margin-bottom: 25px;">
+            Your information has been received. We'll contact you soon to discuss how we can help grow your business!
+        </p>
+        <button id="closeThankYouPopup" style="
+            background: #10b981;
+            color: white;
+            border: none;
+            padding: 12px 30px;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        ">Close</button>
+    `;
+    
+    overlay.appendChild(popup);
+    document.body.appendChild(overlay);
+    
+    // Add animations
+    const style = document.createElement('style');
+    style.textContent = `
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        @keyframes slideUp {
+            from { transform: translateY(30px); opacity: 0; }
+            to { transform: translateY(0); opacity: 1; }
+        }
+        #closeThankYouPopup:hover {
+            background: #059669 !important;
+        }
+    `;
+    document.head.appendChild(style);
+    
+    // Close popup when clicking close button
+    document.getElementById('closeThankYouPopup').addEventListener('click', () => {
+        overlay.style.animation = 'fadeOut 0.3s ease-out';
+        setTimeout(() => {
+            document.body.removeChild(overlay);
+        }, 300);
+    });
+    
+    // Close popup when clicking outside
+    overlay.addEventListener('click', (e) => {
+        if (e.target === overlay) {
+            overlay.style.animation = 'fadeOut 0.3s ease-out';
+            setTimeout(() => {
+                document.body.removeChild(overlay);
+            }, 300);
+        }
+    });
+    
+    // Add fadeOut animation
+    const fadeOutStyle = document.createElement('style');
+    fadeOutStyle.textContent = `
+        @keyframes fadeOut {
+            from { opacity: 1; }
+            to { opacity: 0; }
+        }
+    `;
+    document.head.appendChild(fadeOutStyle);
+}
