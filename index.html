@@ -333,14 +333,50 @@
         </div>
     </section>
 
-    <!-- Final CTA Section -->
-    <section class="final-cta-section">
+    <!-- Contact Form Section -->
+    <section id="contact-form" class="contact-form-section">
         <div class="container">
-            <h2>Stop Losing Revenue. Start Growing Today.</h2>
-            <p>Every day you wait is another $500-$2,000 in lost revenue from missed calls.</p>
-            <p>Join 12+ HVAC and pest control businesses in Maryland, Virginia, and DC who are capturing every call, filling their schedules, and growing 30-40% faster.</p>
-            <button class="cta-button large" onclick="bookCall(event)">Get Your Free Revenue Analysis</button>
-            <p class="cta-subtext">On this call, we'll analyze your current call volume, estimate your missed revenue, and show you exactly how AI can grow your business. No pressure. No sales pitch. Just data.</p>
+            <h2>Enter Details</h2>
+            <p class="form-intro">Get your complete AI business system</p>
+            
+            <form id="contactForm" class="contact-form">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="firstName">First Name</label>
+                        <input type="text" id="firstName" name="firstName" placeholder="First Name" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="lastName">Last Name</label>
+                        <input type="text" id="lastName" name="lastName" placeholder="Last Name" required>
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="phone">Phone *</label>
+                    <input type="tel" id="phone" name="phone" placeholder="Phone" required>
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Email *</label>
+                    <input type="email" id="email" name="email" placeholder="Email" required>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="consent1" name="consent1" required>
+                    <label for="consent1">By checking this box, I consent to receive transactional messages related to my appointment, orders, or services. These may be sent as text messages or phone calls. I understand that calls may be by live or pre-recorded voice. These messages may include appointment reminders, order confirmations, delivery updates, or service notifications. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out of texts. I understand I can opt-out at any time.</label>
+                </div>
+                
+                <div class="form-group checkbox-group">
+                    <input type="checkbox" id="consent2" name="consent2">
+                    <label for="consent2">By checking this box, I consent to receive marketing and promotional communications from Artful Automation, including special offers, discounts, and new product updates. These may be sent as text messages or phone calls. I understand that calls may be automated, pre-recorded, or use an artificial voice. Message frequency may vary. Message & Data rates may apply. Reply HELP for help or STOP to opt-out of texts. My consent to receive marketing messages is not a condition of any purchase.</label>
+                </div>
+                
+                <div class="form-footer">
+                    <a href="/privacy.html" target="_blank">Privacy Policy</a> | <a href="/terms.html" target="_blank">Terms of Service</a>
+                </div>
+                
+                <button type="submit" class="cta-button large">Schedule Meeting</button>
+            </form>
         </div>
     </section>
 

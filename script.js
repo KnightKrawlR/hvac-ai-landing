@@ -5,11 +5,20 @@ const BOOKING_URLS = {
     general: 'https://brand.artfulautomation.com/consultation-appointment-general-609889'
 };
 
-// Book a call function with plan parameter
+// Book a call function - now scrolls to contact form
 function bookCall(event, plan = 'general') {
     event.preventDefault();
-    const url = BOOKING_URLS[plan] || BOOKING_URLS.general;
-    window.location.href = url;
+    const contactForm = document.getElementById('contact-form');
+    if (contactForm) {
+        contactForm.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+        });
+        // Focus on first input field after scrolling
+        setTimeout(() => {
+            document.getElementById('firstName').focus();
+        }, 500);
+    }
 }
 
 // Add click handlers for pricing buttons
@@ -123,3 +132,46 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+
+
+// Handle contact form submission
+document.addEventListener('DOMContentLoaded', () => {
+    const contactForm = document.getElementById('contactForm');
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (e) => {
+            e.preventDefault();
+            
+            const formData = {
+                firstName: document.getElementById('firstName').value,
+                lastName: document.getElementById('lastName').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                consent1: document.getElementById('consent1').checked,
+                consent2: document.getElementById('consent2').checked,
+                timestamp: new Date().toISOString()
+            };
+            
+            // Disable submit button to prevent double submission
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+            const originalButtonText = submitButton.textContent;
+            submitButton.disabled = true;
+            submitButton.textContent = 'Submitting...';
+            
+            try {
+                // Submit to your backend or CRM
+                // For now, redirect to booking page after collecting info
+                console.log('Form submitted:', formData);
+                
+                // Redirect to appropriate booking page based on plan
+                const url = BOOKING_URLS.general;
+                window.location.href = url;
+                
+            } catch (error) {
+                console.error('Form submission error:', error);
+                alert('There was an error submitting the form. Please try again or call us at (954) 857-3886');
+                submitButton.disabled = false;
+                submitButton.textContent = originalButtonText;
+            }
+        });
+    }
+});
