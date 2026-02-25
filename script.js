@@ -157,33 +157,25 @@ document.addEventListener('DOMContentLoaded', () => {
             submitButton.disabled = true;
             submitButton.textContent = 'Submitting...';
             
-            try {
-                // Submit to your backend or CRM
-                console.log('Form submitted:', formData);
-                
-                // TODO: Add your backend API call here
-                // await fetch('/api/submit-form', {
-                //     method: 'POST',
-                //     headers: { 'Content-Type': 'application/json' },
-                //     body: JSON.stringify(formData)
-                // });
-                
-                // Show thank you popup
-                showThankYouPopup();
-                
-                // Clear form
-                contactForm.reset();
-                
-                // Re-enable submit button
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-                
-            } catch (error) {
-                console.error('Form submission error:', error);
-                alert('There was an error submitting the form. Please try again or call us at (954) 857-3886');
-                submitButton.disabled = false;
-                submitButton.textContent = originalButtonText;
-            }
+            // Submit to your backend or CRM
+            console.log('Form submitted:', formData);
+            
+            // TODO: Add your backend API call here
+            // await fetch('/api/submit-form', {
+            //     method: 'POST',
+            //     headers: { 'Content-Type': 'application/json' },
+            //     body: JSON.stringify(formData)
+            // });
+            
+            // Show thank you message
+            alert('Thank you! Your information has been received. We will contact you soon to discuss how we can help grow your business!');
+            
+            // Clear form
+            contactForm.reset();
+            
+            // Re-enable submit button
+            submitButton.disabled = false;
+            submitButton.textContent = originalButtonText;
         });
     }
 });
